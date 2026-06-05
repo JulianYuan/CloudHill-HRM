@@ -1,0 +1,28 @@
+server:
+  port: 10095
+
+logging:
+  file:
+    name: /data/logs/hrm.log
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/cloudhill_hrm?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+    username: ***
+    password: ***
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+# SpringDoc OpenAPI 配置
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui
+    operations-sorter: method
+    tags-sorter: alpha
+    display-request-duration: true
+  show-actuator: false
