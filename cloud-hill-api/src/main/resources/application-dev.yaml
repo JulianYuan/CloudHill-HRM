@@ -10,9 +10,37 @@ logging:
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/cloudhill_hrm?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&allowMultiQueries=true
-    username: ***
-    password: ***
+    username: hr_admin
+    password: Admin@123456
     driver-class-name: com.mysql.cj.jdbc.Driver
+#    hikari:
+#      minimum-idle: 5
+#      maximum-pool-size: 20
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+mybatis-plus:
+  type-aliases-package: com.cloudhill.hrm.modules.*.entity
+  mapper-locations: classpath*:mapper/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    # log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+
+jwt:
+  secret: CloudHill-HRM-Secret-For-JWT-Must-Be-At-Least-256-Bits-Long!
+  expiration: 120000   # 24小时 (毫秒)
+
+# 应用自定义配置
+app:
+  db-init:
+    enabled: false   # 首次启动设为true，自动执行 init.sql 创建表+种子数据
 
 # SpringDoc OpenAPI 配置
 springdoc:
